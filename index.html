@@ -3,6 +3,24 @@
 <head>
     <meta charset="utf-8" />
     <title>FF11 ヴァレンティオン・デー攻略 チョコの組み合わせ検索</title>
+    <link href="../common/theme.css" rel="stylesheet">
+    <style type="text/css">
+        th.blue, td.blue {
+            background-color: #ccccff;
+        }
+        th.red, td.red {
+            background-color: #ffcccc;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            th.blue, td.blue {
+                background-color: #202060;
+            }
+            th.red, td.red {
+                background-color: #602020;
+            }
+        }
+    </style>
     <script src="../common/ga.js"></script>
 </head>
 <body>
@@ -357,7 +375,7 @@
             <th>セリフ</th>
         </tr>
         <tr>
-            <td rowspan="4" style="background-color: #CCCCFF">男性</td>
+            <td rowspan="4" class="blue">男性</td>
             <td>明るい</td>
             <td>「よお！　待ってたぜ！俺の理想の相手に会わせてくれるってんだろ？」</td>
         </tr>
@@ -374,7 +392,7 @@
             <td>「……待っていたぞ。捜し求めていた相手に会わせてくれるらしいな……。」</td>
         </tr>
         <tr>
-            <td rowspan="4" style="background-color: #FFCCCC">女性</td>
+            <td rowspan="4" class="red">女性</td>
             <td>明るい</td>
             <td>「こんにちは！あなたの事を待っていたわ。」</td>
         </tr>
@@ -391,20 +409,6 @@
             <td>「こんにちは……。……こんな私でも……理想の相手に……」</td>
         </tr>
     </table>
-    <style type="text/css">
-        table.border {
-            border-collapse: collapse;
-        }
-        table.border th {
-            text-align: center;
-            border: 1px #cccccc solid;
-        }
-        table.border td {
-            text-align: left;
-            border: 1px #cccccc solid;
-        }
-    </style>
-
 <script>
 /*
 The MIT License (MIT)
@@ -521,8 +525,8 @@ function onChange() {
     var sex1 = getSelectedInt("sex");
     var sex2 = (sex1 + 1) & 1;
 
-    setBgColor("P1Caption", (sex1 == Sex.Male) ? "#CCCCFF" : "#FFCCCC");
-    setBgColor("P2Caption", (sex2 == Sex.Male) ? "#CCCCFF" : "#FFCCCC");
+    setBgColor("P1Caption", (sex1 == Sex.Male) ? "blue" : "red");
+    setBgColor("P2Caption", (sex2 == Sex.Male) ? "blue" : "red");
 
     setTypeOptions("P11Type", sex1);
     setTypeOptions("P12Type", sex1);
@@ -770,7 +774,8 @@ function setNpcDetails(id, area, sex, index) {
 
 function setBgColor(id, color) {
     var elem = document.getElementById(id);
-    elem.style.backgroundColor = color;
+    elem.classList.remove("blue", "red");
+    elem.classList.add(color);
 }
 
 function getSelectedInt(id) {
