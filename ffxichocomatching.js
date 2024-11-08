@@ -384,7 +384,3 @@ function setOption(id, index, value, text) {
     select.options[index].value = value;
     select.options[index].innerHTML = text;
 }
-
-window.onload = function () {
-    onChange();
-}
